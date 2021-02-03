@@ -1,42 +1,48 @@
-
 #ifndef SMARTPOINTER_H
 #define SMARTPOINTER_H
-
+using namespace std;
 namespace DTLib{
-template<typename T>//ç±»æ¨¡æ¿
+template<typename T>//ÀàÄ£°å
 class SmartPointer{
 public:
-        SmartPointer(T*p = nullptr){//æ„é€ å‡½æ•°
+        SmartPointer(T*p = NULL){//1¹¹Ôìº¯Êı
+            cout <<"SmartPointer(T*p = NULL)--1"<<endl;
             m_pointer = p;
         }
-        SmartPointer(const SmartPointer& obj){//æ‹·è´æ„é€ å‡½æ•°
+
+
+        SmartPointer(const SmartPointer& obj){//2¿½±´¹¹Ôìº¯Êı
+            cout <<"SmartPointer(const SmartPointer& obj)--2"<<endl;
             m_pointer = obj.m_pointer;
-            const_cast<SmartPointer&>(obj).m_pointer = nullptr;//
+            const_cast<SmartPointer&>(obj).m_pointer = NULL;//
         }
 
-        SmartPointer& operator= (const SmartPointer& obj){//èµ‹å€¼æ“ä½œç¬¦é‡è½½
-            if(this != &obj){//é˜²æ­¢è‡ªå·±èµ‹å€¼è‡ªå·±ç©
+        SmartPointer& operator= (const SmartPointer& obj){//3¸³Öµ²Ù×÷·ûÖØÔØ
+            if(this != &obj){//·ÀÖ¹×Ô¼º¸³Öµ×Ô¼ºÍæ
                 delete m_pointer;
                 m_pointer = obj.m_pointer;
-                const_cast<SmartPointer&>(obj).m_pointer = nullptr;
+                const_cast<SmartPointer&>(obj).m_pointer = NULL;
             }
+            cout <<"SmartPointer& operator= (const SmartPointer& obj)--3"<<endl;
             return *this;
         }
 
 
 
-        //æ“ä½œç¬¦é‡è½½->å’Œ*
-        T* operator ->(){//è¿”å›å€¼ä¸ºTç±»å‹
+        //²Ù×÷·ûÖØÔØ->ºÍ*
+        T* operator ->(){//4·µ»ØÖµÎªT*ÀàĞÍ
+            cout<<"T* operator ->()--4"<<endl;
             return m_pointer;
         }
-        T operator *(){//whyè¿”å›å€¼åŠ &
-
-            return *m_pointer;//è¿™é‡Œç”¨*thisä¸è¡Œå—ï¼Ÿå¾…æµ‹è¯•
+        T& operator *(){//5why·µ»ØÖµ¼Ó&£¿
+            cout <<"T& operator *()--5"<<endl;
+            return *m_pointer; //*m_pointerÊÇÒ»¸öTest¶ÔÏó
         }
 
 
-        bool isnull(){
-            return (m_pointer == nullptr);
+        bool isNull(){//6
+            cout <<"isNull()--6"<<endl;
+            return (m_pointer == NULL);
 
         }
         T* get(){
@@ -46,22 +52,11 @@ public:
         ~SmartPointer(){
                 delete m_pointer;
         }
-
-
 private:
-        T* m_pointer = nullptr;
+        T* m_pointer;
 };
 }
 
-
-
-
-
-
-
-
-
-
-
 #endif // SMARTPOINTER_H
+
 
