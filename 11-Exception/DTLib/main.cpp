@@ -1,5 +1,4 @@
 #include <iostream>
-#include "SmartPointer.h"
 #include "Exception.h"
 
 using namespace std;

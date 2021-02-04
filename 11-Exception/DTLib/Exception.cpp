@@ -1,9 +1,13 @@
 #include "Exception.h"
 
-#include <cstring>
+#include <cstring>//拷贝字符串的函数
 #include <cstdlib>
 
 namespace DTLib{
+//函数参数message指针指向的字符串可能位于栈上/堆空间/全局数据区,没办法控制message所指向的外部字符串的生命周期
+void Exception::init(const char *message, const char *file, int line){
+    //m_message = message//该写法是不安全的,原因见第7行  解决办法：拷贝一份字符串出来
+}
 ArithmeticException::ArithmeticException(const char* message):Exception(message, 0, 0){}//:后边的Exception()??
 ArithmeticException::ArithmeticException(const char *message, const char *file,int line):Exception(message,file, line){}
 
