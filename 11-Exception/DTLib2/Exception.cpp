@@ -1,11 +1,11 @@
 #include "Exception.h"
-#include <cstring>//¿½±´×Ö·û´®µÄº¯Êı
+#include <cstring>//æ‹·è´å­—ç¬¦ä¸²çš„å‡½æ•°
 #include <cstdlib>
 
 namespace DTLib{
-//º¯Êı²ÎÊımessageÖ¸ÕëÖ¸ÏòµÄ×Ö·û´®¿ÉÄÜÎ»ÓÚÕ»ÉÏ/¶Ñ¿Õ¼ä/È«¾ÖÊı¾İÇø,Ã»°ì·¨¿ØÖÆmessageËùÖ¸ÏòµÄÍâ²¿×Ö·û´®µÄÉúÃüÖÜÆÚ
+//å‡½æ•°å‚æ•°messageæŒ‡é’ˆæŒ‡å‘çš„å­—ç¬¦ä¸²å¯èƒ½ä½äºæ ˆä¸Š/å †ç©ºé—´/å…¨å±€æ•°æ®åŒº,æ²¡åŠæ³•æ§åˆ¶messageæ‰€æŒ‡å‘çš„å¤–éƒ¨å­—ç¬¦ä¸²çš„ç”Ÿå‘½å‘¨æœŸ
 void Exception::init(const char *message, const char *file, int line){
-    //m_message = message//¸ÃĞ´·¨ÊÇ²»°²È«µÄ,Ô­Òò¼ûµÚ6ĞĞ  ½â¾ö°ì·¨£º¿½±´Ò»·İ×Ö·û´®³öÀ´
+    //m_message = message//è¯¥å†™æ³•æ˜¯ä¸å®‰å…¨çš„,åŸå› è§ç¬¬6è¡Œ  è§£å†³åŠæ³•ï¼šæ‹·è´ä¸€ä»½å­—ç¬¦ä¸²å‡ºæ¥
     m_message = strdup(message);
     if(file != NULL){
         char s[16] = {0};
@@ -31,13 +31,13 @@ Exception::Exception(const char *message, const char *file, int line){
 }
 
 
-//¿½±´¹¹Ôìº¯ÊıºÍ¸³Öµ²Ù×÷·ûÖØÔØº¯Êı Éî¿½±´Òª±£Ö¤Ö¸ÕëËùÖ¸ÏòµÄÄÚ´æ¿Õ¼ä±ØĞëÊÇ¶ÀÁ¢µÄ
+//æ‹·è´æ„é€ å‡½æ•°å’Œèµ‹å€¼æ“ä½œç¬¦é‡è½½å‡½æ•° æ·±æ‹·è´è¦ä¿è¯æŒ‡é’ˆæ‰€æŒ‡å‘çš„å†…å­˜ç©ºé—´å¿…é¡»æ˜¯ç‹¬ç«‹çš„
 Exception::Exception(const Exception &e){
     m_message = strdup(e.m_message);
     m_location = strdup(e.m_location);
 }
 Exception& Exception::operator= (const Exception &e){
-    if(this != &e){//ÔÚ½øĞĞÉî¿½±´Ö®Ç°,ÏÈ½«Ô­À´Ö¸ÕëÖ¸ÏòµÄ¶Ñ¿Õ¼äÊÍ·Åµô
+    if(this != &e){//åœ¨è¿›è¡Œæ·±æ‹·è´ä¹‹å‰,å…ˆå°†åŸæ¥æŒ‡é’ˆæŒ‡å‘çš„å †ç©ºé—´é‡Šæ”¾æ‰
         free(m_message);
         free(m_location);
         m_message = strdup(e.m_message);
@@ -46,8 +46,8 @@ Exception& Exception::operator= (const Exception &e){
     return *this;
 }
 
-const char* Exception::message() const{//¾ßÌåÊµÏÖ¿É½«Ç°ÃæµÄvirtualÈ¥µô
-    return m_message;//·µ»Ø¶ÔÓ¦µÄ³ÉÔ±Ö¸Õë
+const char* Exception::message() const{//å…·ä½“å®ç°å¯å°†å‰é¢çš„virtualå»æ‰
+    return m_message;//è¿”å›å¯¹åº”çš„æˆå‘˜æŒ‡é’ˆ
 }
 const char* Exception::location() const{
     return m_location;
