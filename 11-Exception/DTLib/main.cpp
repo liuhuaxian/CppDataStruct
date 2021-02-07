@@ -7,8 +7,9 @@ using namespace DTLib;
 int main()
 {
     try{
-        THROW_EXCEPTION(ArithmeticException, "Test");
+        //THROW_EXCEPTION(ArithmeticException, "Test");
         //throw ArithmeticException("Test", __FILE__, __LINE__);
+        THROW_EXCEPTION(Exception, "Test");
     }
     catch (const ArithmeticException &e){
         cout << "catch (const ArithmeticException &e)" << endl;

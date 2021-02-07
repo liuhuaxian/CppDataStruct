@@ -28,7 +28,7 @@ public:
     virtual ~Exception() = 0;
 };
 
-class ArithmeticException:public Exception{//计算异常  1/0
+/*class ArithmeticException:public Exception{//计算异常  1/0
 public://构造函数初始化列表
     ArithmeticException();
     ArithmeticException(const char* message);
@@ -101,6 +101,6 @@ public:
     }
     ~InvalidParameterExcetion(){}
 };
-
+*/
 }
 #endif // EXCEPTION_H
