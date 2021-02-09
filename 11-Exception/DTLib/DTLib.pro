@@ -4,8 +4,10 @@ CONFIG -= qt
 QT += core
 
 SOURCES += main.cpp \
-    Exception.cpp
+    Exception.cpp \
+    object.cpp
 
 HEADERS += \
-    Exception.h
+    Exception.h \
+    object.h
 
