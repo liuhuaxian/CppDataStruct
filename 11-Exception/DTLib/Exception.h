@@ -1,48 +1,49 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
-namespace DTLib{
-#define THROW_EXCEPTION(e, m) (throw e(m, __FILE__, __LINE__))//´òÓ¡³öÆäËùÔÚÎÄ¼şµÄÃû×ÖºÍĞĞºÅ
 
-class Exception{//Ã»ÓĞ¶ÔÏó,ÓÃÀ´±»¼Ì³Ğ
+namespace DTLib{
+//æ‰“å°å‡ºå…¶æ‰€åœ¨æ–‡ä»¶çš„åå­—å’Œè¡Œå·
+#define THROW_EXCEPTION(e, m) (throw e(m, __FILE__, __LINE__))
+class Exception{//æ²¡æœ‰å¯¹è±¡,ç”¨æ¥è¢«ç»§æ‰¿
 protected:
     char* m_message;
     char* m_location;
 
-    //ÓÃ¸¨ÖúµÄinitº¯ÊıÍê³É³õÊ¼»¯µÄ¹¤×÷,Ç°Èı¸ö¹¹Ôìº¯ÊıµÄÄÚ²¿Âß¼­ÊÇ²î²»¶àµÄ,ËùÒÔÓÃinitº¯Êı
-    void init(const char *message, const char *file, int line);//ÓÃ¸¨ÖúµÄinitº¯ÊıÍê³É³õÊ¼»¯µÄ¹¤×÷
+    //ç”¨è¾…åŠ©çš„initå‡½æ•°å®Œæˆåˆå§‹åŒ–çš„å·¥ä½œ,å‰ä¸‰ä¸ªæ„é€ å‡½æ•°çš„å†…éƒ¨é€»è¾‘æ˜¯å·®ä¸å¤šçš„,æ‰€ä»¥ç”¨initå‡½æ•°
+    void init(const char *message, const char *file, int line);//ç”¨è¾…åŠ©çš„initå‡½æ•°å®Œæˆåˆå§‹åŒ–çš„å·¥ä½œ
 public:
     Exception(const char* message);
     Exception(const char* file,int line);
     Exception(const char *message, const char *file, int line);
 
-    //Òì³£Àà¶ÔÏó³õÊ¼»¯»òÕßÊÇ¸³Öµ,´Óinitº¯ÊıÊµÏÖ¿ÉÒÔ¿´³öÊÇÉî¿½±´,ÈôÊÇÉî¿½±´ÕâÁ½¸öº¯ÊıµÄÊµÏÖÊÇÉÙ²»ÁËµÎ
+    //å¼‚å¸¸ç±»å¯¹è±¡åˆå§‹åŒ–æˆ–è€…æ˜¯èµ‹å€¼,ä»initå‡½æ•°å®ç°å¯ä»¥çœ‹å‡ºæ˜¯æ·±æ‹·è´,è‹¥æ˜¯æ·±æ‹·è´è¿™ä¸¤ä¸ªå‡½æ•°çš„å®ç°æ˜¯å°‘ä¸äº†æ»´
     Exception(const Exception &e);//a(b)
-   //Ò»°ã·µ»ØÖµ»¹Òª¼ÌĞø±»´¦ÀíµÄÇé¿ö·µ»ØÒıÓÃ,ÔËËã·ûÖØÔØ·µ»ØÎªÒıÓÃµÄ¾ÍÄÇÃ´¼¸¸ö:[],=,ÊäÈëÊä³öÔËËã·û,×Ô¼Ó×Ô¼õÔËËã·û£¡¼Ç×¡¾ÍĞĞÁË£¡
-    Exception& operator= (const Exception &e);//a=b
+   //ä¸€èˆ¬è¿”å›å€¼è¿˜è¦ç»§ç»­è¢«å¤„ç†çš„æƒ…å†µè¿”å›å¼•ç”¨,è¿ç®—ç¬¦é‡è½½è¿”å›ä¸ºå¼•ç”¨çš„å°±é‚£ä¹ˆå‡ ä¸ª:[],=,è¾“å…¥è¾“å‡ºè¿ç®—ç¬¦,è‡ªåŠ è‡ªå‡è¿ç®—ç¬¦ï¼è®°ä½å°±è¡Œäº†ï¼
+    Exception& operator= (const Exception& e);//a=b
 
-    virtual const char* message() const;//¾ßÌåµÄ¹¦ÄÜÌåÏÖÔÚÕâ2¸ö½Ó¿ÚÉÏ
+    virtual const char* message() const;//å…·ä½“çš„åŠŸèƒ½ä½“ç°åœ¨è¿™2ä¸ªæ¥å£ä¸Š
     virtual const char* location() const;
 
-    //º¬ÓĞ´¿Ğéº¯ÊıµÄ»ùÀà(³éÏóÀà)ÊÇ²»¿ÉÒÔ¶¨Òå¶ÔÏóµÄ¡£´¿Ğéº¯ÊıÊÇ²»ĞèÒªÌá¹©ÊµÏÖµÄ£¬µÈ×Å×ÓÀàÀ´Íê³É£¬BUT!µ«·²¶¨ÒåÁËÎö¹¹º¯Êı,²»¹ÜÊÇ²»ÊÇ´¿ĞéµÄ,±ØĞëÊµÏÖ
-    virtual ~Exception() = 0;
+    //å«æœ‰çº¯è™šå‡½æ•°çš„åŸºç±»(æŠ½è±¡ç±»)æ˜¯ä¸å¯ä»¥å®šä¹‰å¯¹è±¡çš„ã€‚çº¯è™šå‡½æ•°æ˜¯ä¸éœ€è¦æä¾›å®ç°çš„ï¼Œç­‰ç€å­ç±»æ¥å®Œæˆï¼ŒBUT!ä½†å‡¡å®šä¹‰äº†ææ„å‡½æ•°,ä¸ç®¡æ˜¯ä¸æ˜¯çº¯è™šçš„,å¿…é¡»å®ç°
+    virtual ~Exception();
 };
 
-/*class ArithmeticException:public Exception{//¼ÆËãÒì³£  1/0
-public://¹¹Ôìº¯Êı³õÊ¼»¯ÁĞ±í
-    ArithmeticException();
-    ArithmeticException(const char* message);
-    ArithmeticException(const char* file,int line);
-    ArithmeticException(const char *message, const char *file,int line);
+class ArithmeticException:public Exception{//è®¡ç®—å¼‚å¸¸  1/0
+public://æ„é€ å‡½æ•°åˆå§‹åŒ–åˆ—è¡¨
+    ArithmeticException():Exception(0){}
+    ArithmeticException(const char* message):Exception(message){}
+    ArithmeticException(const char* file,int line):Exception(file,line){}
+    ArithmeticException(const char *message, const char *file,int line):Exception(message,file,line){}
 
-    ArithmeticException(const ArithmeticException &e);//¿½±´¹¹Ôìº¯Êı
-    ArithmeticException& operator=(const ArithmeticException &e){
-        Exception::operator =(e);//²»¼Ó&
+    ArithmeticException(const ArithmeticException &e):Exception(e){}//æ‹·è´æ„é€ å‡½æ•°
+    ArithmeticException& operator=(const ArithmeticException& e){
+        Exception::operator =(e);//ä¸åŠ &
         return *this;
     }
     ~ArithmeticException() {}
 };
-class NullPointerException:public Exception{//¿ÕÖ¸ÕëÒì³£
+class NullPointerException:public Exception{//ç©ºæŒ‡é’ˆå¼‚å¸¸
 public:
     NullPointerException():Exception(0){}
     NullPointerException(const char* message):Exception(message){}
@@ -51,13 +52,13 @@ public:
 
     NullPointerException(const NullPointerException &e):Exception(e){}
     NullPointerException& operator=(const NullPointerException& e){
-        Exception::operator =(e);//²»¼Ó&
+        Exception::operator =(e);//ä¸åŠ &
         return *this;
     }
     ~NullPointerException(){}
 };
 
-class IndexOutOfBoundsException: public Exception{//Ô½½çÒì³£ ·ÃÎÊÊı×é
+class IndexOutOfBoundsException: public Exception{//è¶Šç•Œå¼‚å¸¸ è®¿é—®æ•°ç»„
 public:
     IndexOutOfBoundsException():Exception(0){}
     IndexOutOfBoundsException(const char* message):Exception(message){}
@@ -71,7 +72,7 @@ public:
     }
     ~IndexOutOfBoundsException(){}
 };
-class NoEnoughMemoryException: public Exception{//ÄÚ´æ²»×ãÒì³£ ¶¯Ì¬ÉêÇëÄÚ´æµÄÊ±ºò
+class NoEnoughMemoryException: public Exception{//å†…å­˜ä¸è¶³å¼‚å¸¸ åŠ¨æ€ç”³è¯·å†…å­˜çš„æ—¶å€™
 public:
     NoEnoughMemoryException():Exception(0){}
     NoEnoughMemoryException(const char* message):Exception(message){}
@@ -86,7 +87,7 @@ public:
     }
     ~NoEnoughMemoryException(){}
 };
-class InvalidParameterExcetion: public Exception{//²ÎÊı´íÎóÒì³£
+class InvalidParameterExcetion: public Exception{//å‚æ•°é”™è¯¯å¼‚å¸¸
 public:
     InvalidParameterExcetion():Exception(0){}
     InvalidParameterExcetion(const char* message):Exception(message){}
@@ -101,6 +102,6 @@ public:
     }
     ~InvalidParameterExcetion(){}
 };
-*/
+
 }
 #endif // EXCEPTION_H

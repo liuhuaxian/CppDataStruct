@@ -21,7 +21,7 @@ void Exception::init(const char *message, const char *file, int line){
 
 
 Exception::Exception(const char* message){
-    init(message);
+    init(message,0,0);
 }
 Exception::Exception(const char* file,int line){
     init(0,file,line);

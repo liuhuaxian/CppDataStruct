@@ -8,8 +8,8 @@ int main()
 {
     try{
         //THROW_EXCEPTION(ArithmeticException, "Test");
-        //throw ArithmeticException("Test", __FILE__, __LINE__);
-        THROW_EXCEPTION(Exception, "Test");
+        throw ArithmeticException("Test1234", __FILE__, __LINE__);
+        //THROW_EXCEPTION(ArithmeticException, "Test234");
     }
     catch (const ArithmeticException &e){
         cout << "catch (const ArithmeticException &e)" << endl;
