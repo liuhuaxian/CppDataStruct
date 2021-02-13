@@ -5,11 +5,11 @@ using namespace std;
 namespace DTLib{
 //throw()异常规格说明，当前的重载函数是不会抛出任何的重载异常的
 void *Object::operator new (unsigned int size) throw(){//创建单个对象的时候会调用
-    cout << "void *Object::operator new" << size << endl;
+    //cout << "void *Object::operator new" << size << endl;
     return malloc(size);
 }
 void Object:: operator delete (void *p){
-    cout << "void Object:: operator delete (void *p)" << p << endl;
+    //cout << "void Object:: operator delete (void *p)" << p << endl;
     free(p);
 }
 //创建对象的数组 noexcept是异常规格说明:当前的new不会抛出异常，如果真的无法从堆空间中申请内存时，直接返回一个空

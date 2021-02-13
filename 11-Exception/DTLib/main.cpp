@@ -30,11 +30,14 @@ void *Object::operator new
 void Object:: operator delete (void *p)
 void Object:: operator delete (void *p)
 
-
+创建一个Test对象需要12个字节，其中4个字节是隐藏着的指向虚函数表的指针
 void *Object::operator new12
 void *Object::operator new16
 obj1=0xf711a8
 obj2=0xf711c0
 void Object:: operator delete (void *p)0xf711a8
 void Object:: operator delete (void *p)0xf711c0
+
+数据结构库里面的所有的类都继承自顶层object顶层父类的话，
+我们就可以保证从堆空间里面创建数据结构对象的时候必然使用我们提供的new和delete的实现了
 */
