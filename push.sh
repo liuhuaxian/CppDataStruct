@@ -15,8 +15,4 @@ done
 cleanother
 git add *
 git commit -m "`date` push $1"
-<<<<<<< HEAD
 git push origin master
-=======
-git push origin master
->>>>>>> eb7d70d6f787a4e32adf1c6b7447d14359cd0061
