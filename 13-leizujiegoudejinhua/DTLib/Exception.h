@@ -1,6 +1,7 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
+#include"Object.h"
 
 namespace DTLib{
 //打印出其所在文件的名字和行号
@@ -9,6 +10,7 @@ class Exception{//没有对象,用来被继承
 protected:
     char* m_message;
     char* m_location;
+
 
     //用辅助的init函数完成初始化的工作,前三个构造函数的内部逻辑是差不多的,所以用init函数
     void init(const char *message, const char *file, int line);//用辅助的init函数完成初始化的工作
@@ -25,8 +27,7 @@ public:
     virtual const char* message() const;//具体的功能体现在这2个接口上
     virtual const char* location() const;
 
-    //含有纯虚函数的基类(抽象类)是不可以定义对象的。
-    //纯虚函数是不需要提供实现的，等着子类来完成，BUT!但凡定义了析构函数,不管是不是纯虚的,必须实现
+    //含有纯虚函数的基类(抽象类)是不可以定义对象的。纯虚函数是不需要提供实现的，等着子类来完成，BUT!但凡定义了析构函数,不管是不是纯虚的,必须实现
     virtual ~Exception();
 };
 
@@ -39,10 +40,10 @@ public://构造函数初始化列表
 
     ArithmeticException(const ArithmeticException &e):Exception(e){}//拷贝构造函数
     ArithmeticException& operator=(const ArithmeticException& e){
-        Exception::operator= (e);//不加&
+        Exception::operator =(e);//不加&
         return *this;
     }
-    ~ArithmeticException() {}
+    ~ArithmeticException() override{}
 };
 class NullPointerException:public Exception{//空指针异常
 public:
@@ -56,7 +57,7 @@ public:
         Exception::operator =(e);//不加&
         return *this;
     }
-    ~NullPointerException(){}
+    ~NullPointerException()override{}//子类对基类的重写(覆盖)
 };
 
 class IndexOutOfBoundsException: public Exception{//越界异常 访问数组
@@ -71,7 +72,7 @@ public:
         Exception::operator =(e);
         return *this;
     }
-    ~IndexOutOfBoundsException(){}
+    ~IndexOutOfBoundsException()override{}
 };
 class NoEnoughMemoryException: public Exception{//内存不足异常 动态申请内存的时候
 public:
@@ -83,10 +84,10 @@ public:
 
     NoEnoughMemoryException(const NoEnoughMemoryException&e):Exception(e){}
     NoEnoughMemoryException& operator=(const NoEnoughMemoryException&e){
-        Exception:operator =(e);
+        Exception::operator =(e);
         return *this;
     }
-    ~NoEnoughMemoryException(){}
+    ~NoEnoughMemoryException()override{}
 };
 class InvalidParameterException: public Exception{//参数错误异常
 public:
@@ -98,10 +99,25 @@ public:
 
     InvalidParameterException(const InvalidParameterException& e):Exception(e){}
     InvalidParameterException& operator=(const InvalidParameterException& e){
-        Exception:operator =(e);
+        Exception::operator =(e);
         return *this;
     }
-    ~InvalidParameterException(){}
+    ~InvalidParameterException()override{}
+};
+
+class InvalidOperationException:public Exception{//新增
+public:
+    InvalidOperationException():Exception(0){}
+    InvalidOperationException(const char* message):Exception(message){}
+    InvalidOperationException(const char* file,int line):Exception(file,line){}
+    InvalidOperationException(const char *message, const char *file,int line):Exception(message,file,line){}
+
+    InvalidOperationException(const InvalidOperationException& e):Exception(e){}
+    InvalidOperationException& operator =(const InvalidOperationException& e){
+            Exception::operator =(e);
+            return *this;
+        }
+    ~InvalidOperationException()override{}
 };
 
 }

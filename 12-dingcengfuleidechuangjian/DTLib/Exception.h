@@ -25,8 +25,7 @@ public:
     virtual const char* message() const;//具体的功能体现在这2个接口上
     virtual const char* location() const;
 
-    //含有纯虚函数的基类(抽象类)是不可以定义对象的。
-    //纯虚函数是不需要提供实现的，等着子类来完成，BUT!但凡定义了析构函数,不管是不是纯虚的,必须实现
+    //含有纯虚函数的基类(抽象类)是不可以定义对象的。纯虚函数是不需要提供实现的，等着子类来完成，BUT!但凡定义了析构函数,不管是不是纯虚的,必须实现
     virtual ~Exception();
 };
 
@@ -39,7 +38,7 @@ public://构造函数初始化列表
 
     ArithmeticException(const ArithmeticException &e):Exception(e){}//拷贝构造函数
     ArithmeticException& operator=(const ArithmeticException& e){
-        Exception::operator= (e);//不加&
+        Exception::operator =(e);//不加&
         return *this;
     }
     ~ArithmeticException() {}
