@@ -3,7 +3,7 @@
 #include "object.h"
 using namespace std;
 using namespace DTLib;
-
+#include"SmartPointer.h"
 class Test:public Object{
 public:
     int i,j;
@@ -17,10 +17,17 @@ int main()
     Object* obj1 = new Test();
     Object* obj2 = new Child();
 
-    cout << "obj1=" <<obj1 << endl;
-    cout << "obj2=" <<obj2 << endl;
+    //cout << "obj1=" <<obj1 << endl;
+    //cout << "obj2=" <<obj2 << endl;
     delete obj1;
     delete obj2;
+
+    //SmartPointer
+    SmartPointer<int>*sp = new SmartPointer<int>();
+    delete sp;
+
+    InvalidOperationException* e = new InvalidOperationException();
+    delete e;
     return 0;
 }
 /*

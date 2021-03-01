@@ -16,7 +16,7 @@ public:
         const_cast<SmartPointer&>(obj).m_pointer = nullptr;
     }
     //=操作符重载
-    SmartPinter& operator=(const SmartPointer &obj){
+    SmartPointer& operator=(const SmartPointer &obj){
         if(this != &obj){
             delete m_pointer;//赋值之前先删除
             m_pointer = obj.m_pointer;
