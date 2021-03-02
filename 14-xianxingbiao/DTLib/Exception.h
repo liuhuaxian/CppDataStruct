@@ -1,4 +1,4 @@
-#ifndef EXCEPTION_H
+﻿#ifndef EXCEPTION_H
 #define EXCEPTION_H
 
 #include"Object.h"
@@ -43,7 +43,7 @@ public://构造函数初始化列表
         Exception::operator =(e);//不加&
         return *this;
     }
-    ~ArithmeticException() override{}
+    ~ArithmeticException() {}
 };
 class NullPointerException:public Exception{//空指针异常
 public:
@@ -57,7 +57,7 @@ public:
         Exception::operator =(e);//不加&
         return *this;
     }
-    ~NullPointerException()override{}//子类对基类的重写(覆盖)
+    ~NullPointerException(){}//子类对基类的重写(覆盖)
 };
 
 class IndexOutOfBoundsException: public Exception{//越界异常 访问数组
@@ -72,7 +72,7 @@ public:
         Exception::operator =(e);
         return *this;
     }
-    ~IndexOutOfBoundsException()override{}
+    ~IndexOutOfBoundsException(){}
 };
 class NoEnoughMemoryException: public Exception{//内存不足异常 动态申请内存的时候
 public:
@@ -87,7 +87,7 @@ public:
         Exception::operator =(e);
         return *this;
     }
-    ~NoEnoughMemoryException()override{}
+    ~NoEnoughMemoryException(){}
 };
 class InvalidParameterException: public Exception{//参数错误异常
 public:
@@ -102,7 +102,7 @@ public:
         Exception::operator =(e);
         return *this;
     }
-    ~InvalidParameterException()override{}
+    ~InvalidParameterException(){}
 };
 
 class InvalidOperationException:public Exception{//新增
@@ -117,7 +117,7 @@ public:
             Exception::operator =(e);
             return *this;
         }
-    ~InvalidOperationException()override{}
+    ~InvalidOperationException(){}
 };
 
 }

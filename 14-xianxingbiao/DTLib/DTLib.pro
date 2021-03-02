@@ -11,5 +11,6 @@ HEADERS += \
     Exception.h \
     List.h \
     SmartPointer.h \
-    Object.h
+    Object.h \
+    SqlList.h
 

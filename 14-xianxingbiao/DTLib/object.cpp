@@ -1,4 +1,4 @@
-#include "object.h"
+﻿#include "object.h"
 #include<cstdlib>
 #include<iostream>
 using namespace std;
@@ -14,7 +14,7 @@ void Object:: operator delete (void *p){
 }
 //创建对象的数组 noexcept是异常规格说明:当前的new不会抛出异常，如果真的无法从堆空间中申请内存时，直接返回一个空
 //这样就会保证new申请失败的时候就会返回一个空值，而不是抛出一个异常
-void *Object:: operator new[] (unsigned int size) noexcept{
+void *Object:: operator new[] (unsigned int size) {
     return malloc(size);
 }
 void Object:: operator delete[] (void *p){
