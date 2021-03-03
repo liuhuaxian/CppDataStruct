@@ -16,9 +16,9 @@ StaticList 设计要点 类模板 1.使用原生数组作为顺序存储空间 2
 */
 namespace DTLib{
 template <typename T,int N>
-class StaticList:public SqlList<T>{
+class StaticList:public SqlList<T>{//静态定义了一个存储空间
 protected:
-    T m_space[N];
+    T m_space[N];//顺序存储空间
 public:
     StaticList(){
         this->m_array = m_space;//开始具体分配内存
