@@ -39,7 +39,7 @@ public:
     // 重新设置存储空间的大小
     void resize(int capacity){
         if (capacity != m_capacity){
-            T *array = new T[capacity];     // 注意 1
+            T *array = new T[capacity];  //注意1 申请新的内存空间，对原内存空间中的数据进行拷贝，以保留原始值。
             if(array!=0){
                 int length =(this->m_length < capacity)?this->m_length:capacity;
                 for(int i=0;i<length;++i){
