@@ -9,11 +9,21 @@ int main(){
 
     StaticList<int,5> sl;
 
-    for (int i = 0; i < sl.capacity(); ++i){
+    /*for (int i = 0; i < sl.capacity(); ++i){
         sl.insert(0, i);
         //cout << sl[i] << endl;
     }
+    for (int i = 0; i< sl.length(); ++i){
+        cout << sl[i] << endl;
+    }*/
 
+    cout << "--------------" << endl;
+
+    sl.insert(0,100);
+    for (int i = 0; i < sl.capacity()-1; ++i){
+        sl.insert(1, i);
+        //cout << sl[i] << endl;
+    }
     for (int i = 0; i< sl.length(); ++i){
         cout << sl[i] << endl;
     }

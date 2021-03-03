@@ -7,8 +7,8 @@ namespace DTLib{
 template<typename T>
 class SqlList:public List<T>{
 protected:
-    T* m_array;
-    int m_length;
+    T* m_array;//指向一个数组
+    int m_length;//记录当前线性表的长度
 public:
 
     bool insert(const T &e){
@@ -17,9 +17,10 @@ public:
 
     bool insert(int i,const T &e){
         bool ret = ( (0<=i) && (i <= m_length));// 注：目标位置可以为m_length,表示尾部插入
-        ret = ret && (m_length < capacity());//capacity()容器能存储数据的个数
+        ret = ret && (m_length+1 <= capacity());//capacity()容器能存储数据的个数
         if(ret){
-            for(int p = m_length -1;p >= i;--p){//向数组中插入元素：i后边的元素向后移动
+            for(int p = m_length -1;p >= i;--p){
+      //向数组中插入元素：将目标位置(包含目标位置自身)之后的所有元素后移一个位置  i后边的元素向后移动
                 m_array[p + 1] = m_array[p];
             }
             m_array[i] = e;
@@ -29,10 +30,10 @@ public:
     }
 
     bool remove(int i){//移除m_array[i]元素
-        bool ret = ( (0<=i) && (i <= m_length));
+        bool ret = ( (0<=i) && (i < m_length));
         if(ret){
-            for (int p = i + 1; p < m_length; ++p){
-                  m_array[p - 1] = m_array[p];//后边的值向前来
+            for (int p = i; p < m_length; ++p){
+                  m_array[p] = m_array[p+1];//后边的值向前来
             }
             --m_length;
         }
@@ -61,7 +62,7 @@ public:
     void clear(){
         m_length = 0;
     }
-
+//以下2个操作符重载是分const和非const情况的
     T& operator[](int i){
         if((0<= i)&& (i<m_length)){
             return m_array[i];
@@ -73,7 +74,7 @@ public:
     T operator [](int i)const{//该函数的作用是什么？
         return (const_cast<SqlList&>(*this))[i];
     }
-    virtual int capacity()const = 0;
+    virtual int capacity()const = 0;//顺序存储空间的最大存储容量，实现是在子类中
 
 };
 }

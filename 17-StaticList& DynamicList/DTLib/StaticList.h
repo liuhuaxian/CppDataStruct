@@ -18,15 +18,15 @@ namespace DTLib{
 template <typename T,int N>
 class StaticList:public SqlList<T>{
 protected:
-    T m_space[N];
+    T m_space[N];//定义了一个顺序存储空间，N为模板参数
 public:
-    StaticList(){
-        this->m_array = m_space;//开始具体分配内存
+    StaticList(){//指定父类成员的具体值
+        this->m_array = m_space;//将SqlList和StaticList 建立起联系 挂接!! 开始具体分配内存
         this->m_length = 0;
     }
 
     int capacity()const{
-        return N;
+        return N;//当前顺序存储空间的最大容量
     }
 };
 

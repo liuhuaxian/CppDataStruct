@@ -1,8 +1,6 @@
 ﻿#ifndef EXCEPTION_H
 #define EXCEPTION_H
-
 #include"Object.h"
-
 namespace DTLib{
 //打印出其所在文件的名字和行号
 #define THROW_EXCEPTION(e, m) (throw e(m, __FILE__, __LINE__))
@@ -10,8 +8,6 @@ class Exception{//没有对象,用来被继承
 protected:
     char* m_message;
     char* m_location;
-
-
     //用辅助的init函数完成初始化的工作,前三个构造函数的内部逻辑是差不多的,所以用init函数
     void init(const char *message, const char *file, int line);//用辅助的init函数完成初始化的工作
 public:

@@ -2,7 +2,9 @@
 #define SQLLIST_H
 #include"List.h"
 #include"Exception.h"
+#include<iostream>
 //顺序存储结构的实现可以使用一维数组来表示  存储空间T*m_marry  当前长度int m_length
+using namespace std;
 namespace DTLib{
 template<typename T>
 class SqlList:public List<T>{
@@ -11,6 +13,7 @@ protected:
     int m_length;
 public:
 
+    //默认插入到尾端。
     bool insert(const T &e){
         return insert(m_length,e);
     }
@@ -24,7 +27,11 @@ public:
             }
             m_array[i] = e;
             ++m_length;
+        }else{
+
+            cout <<"lhx is !!!!!" << endl;
         }
+
         return ret;
     }
 
