@@ -70,7 +70,8 @@ public:
         }
     }
 
-    T operator [](int i)const{//const对象调用的时候去除const对象的只读属性,目的是对65行代码的复用
+    T operator [](int i)const{
+        //const对象调用的时候去除const对象的只读属性,目的是对65行代码的复用
         return (const_cast<SqlList&>(*this))[i];
     }
     virtual int capacity()const = 0;
