@@ -2,7 +2,7 @@
 #define OBJECT_H
 
 namespace DTLib{
-class Object{
+class Object{//在DTLib中Object类是顶层父类,其它的一切类都要继承自该类
 public://如果你知道你的函数绝对不会抛出任何异常，应该使用noexcept, 而不是throw().
     void *operator new (unsigned int size) throw();
     void operator delete (void *p);

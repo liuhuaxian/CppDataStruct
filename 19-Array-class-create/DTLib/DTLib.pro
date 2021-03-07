@@ -13,5 +13,6 @@ HEADERS += \
     Object.h \
     SqlList.h \
     Array.h \
-    StaticArray.h
+    StaticArray.h \
+    DynamicArray.h
 
