@@ -24,6 +24,7 @@ int main(){
     }
     cout << "*******************" << endl;*/
 
+
     DynamicArray<int>a(5);
     for (int i=0; i<a.length(); ++i){
         a[i] = i+1;
@@ -36,6 +37,8 @@ int main(){
     for (int i=0; i<a.length(); ++i){
         cout << a[i] << endl;
     }
+    cout << "*******************" << endl;
+    a[5] = 100;
     return 0;
 }
 
