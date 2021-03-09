@@ -3,8 +3,6 @@
 #include "DynamicArray.h"
 using namespace std;
 using namespace DTLib;
-
-
 int main(){
     cout << "main begin" << endl;
     DynamicArray<int> d(5);

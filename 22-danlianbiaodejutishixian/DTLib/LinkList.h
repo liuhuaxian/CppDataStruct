@@ -20,16 +20,15 @@ protected:
        T value;
        Node *next;
      };
-    mutable Node m_header;
+    mutable Node m_header;//头节点的主要作用就是定位节点
     int m_length;
 public:
     LinkList(){
         m_header.next = 0;
         m_length = 0;
     }
-    bool insert(const T &e){//在链表的最后插入新的元素
-        return insert(m_length,e);
-    }
+    virtual bool insert(const T &e) = 0;//在链表的最后插入新的元素
+        //return insert(m_length,e);
     bool insert(int i,const T &e){//在链表的指定位置插入新的元素
         bool ret = ((0 <= i)&&(i <= m_length));
         if(ret){
