@@ -19,7 +19,7 @@ int main(){
     }
     cout << "&************" << endl;
     L.set(0,200);
-    for(int i=0;i<5;i++){
+    for(int i=0;i<4;i++){
         cout << L.get(i)<< endl;
     }
     cout << "&************" << endl;
@@ -30,7 +30,7 @@ int main(){
     cout << "&************" << endl;
     LinkList<int>L2;
     L2 = L;
-    for(int i=0;i<5;i++){
+    for(int i=0;i<4;i++){
         cout << L2.get(i)<< endl;
     }
     cout << "&************" << endl;

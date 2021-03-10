@@ -27,7 +27,10 @@ public:
         m_header.next = 0;
         m_length = 0;
     }
-    virtual bool insert(const T &e) = 0;//在链表的最后插入新的元素
+    bool insert(const T &e)//在链表的最后插入新的元素
+    {
+        return insert(m_length,e);
+    }
         //return insert(m_length,e);
     bool insert(int i,const T &e){//在链表的指定位置插入新的元素
         bool ret = ((0 <= i)&&(i <= m_length));
@@ -69,15 +72,15 @@ public:
         if(ret){
             Node *current = &m_header;
             for(int p=0;p<i;++p){//p在此处的作用是从头开始遍历，知道i处为止
-               current = current->next;
+               current = current->next;//current就是要指向的目标
             }
                //current->value = e;
-             current->next->value = e;//为什么是next
+             current->next->value = e;
         }
         return ret;
     }
 
-    T get(int i)const{
+    T get(int i)const{//重载版本的get函数
         T ret;
         if (!get(i, ret)){
                     THROW_EXCEPTION(IndexOutOfBoundsException, "Invalid parameter i to get element ...");
@@ -85,10 +88,10 @@ public:
          return ret;
     }
 
-    bool get(int i, T &e) const {
+    bool get(int i, T &e) const {//const的意思是在该成员函数中不能够修改成员变量的值
       bool ret = ((0 <= i) && (i < m_length));
       if (ret){
-                Node *current = &m_header;
+                Node *current = &m_header;//此处&编译器就以为有可能要修改变量,所以才会有23行的mutable
                 for (int p=0; p<i; ++p){
                     current = current->next;
                 }
@@ -101,12 +104,13 @@ public:
        }
 
        void clear(){
-           while (m_header.next){
+           while (m_header.next){//第0号节点
                Node *toDel = m_header.next;
                m_header.next = toDel->next;
                delete toDel;
                --m_length;
            }
+           m_length = 0;
        }
 
        ~LinkList(){
